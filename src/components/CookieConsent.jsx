@@ -1,0 +1,66 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+
+export default function CookieConsent() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    // Check if user has already made a choice
+    const cookieChoice = localStorage.getItem('cookieConsent')
+    if (!cookieChoice) {
+      // Show banner after a short delay
+      const timer = setTimeout(() => {
+        setIsVisible(true)
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [])
+
+  const handleAccept = () => {
+    localStorage.setItem('cookieConsent', 'accepted')
+    setIsVisible(false)
+  }
+
+  const handleReject = () => {
+    localStorage.setItem('cookieConsent', 'rejected')
+    setIsVisible(false)
+  }
+
+  if (!isVisible) return null
+
+  return (
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 px-6 pb-6 z-50">
+      <div className="pointer-events-auto ml-auto max-w-xl rounded-xl bg-white p-6 shadow-lg outline-1 outline-gray-900/10 dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+        <p className="text-sm/6 text-gray-900 dark:text-white">
+          This website uses cookies to supplement a balanced diet and provide a much deserved reward to the senses after
+          consuming bland but nutritious meals. Accepting our cookies is optional but recommended, as they are
+          delicious. See our{' '}
+          <a
+            href="#"
+            className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300"
+          >
+            cookie policy
+          </a>
+          .
+        </p>
+        <div className="mt-4 flex items-center gap-x-5">
+          <button
+            type="button"
+            onClick={handleAccept}
+            className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-gray-700 dark:inset-ring dark:inset-ring-white/10 dark:hover:bg-white/15 dark:focus-visible:outline-white transition-colors"
+          >
+            Accept all
+          </button>
+          <button
+            type="button"
+            onClick={handleReject}
+            className="text-sm/6 font-semibold text-gray-900 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 transition-colors"
+          >
+            Reject all
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
