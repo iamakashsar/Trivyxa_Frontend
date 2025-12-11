@@ -20,6 +20,7 @@ const colorChangingDotStyles = `
 
 const navigation = {
   services: [
+    { name: 'Software Development', href: '/#features' },
     { name: 'Web Development', href: '/#features' },
     { name: 'UI/UX Design', href: '/#features' },
     { name: 'Graphic Design', href: '/#features' },
@@ -37,9 +38,8 @@ const navigation = {
     { name: 'Services', href: '/#features' },
   ],
   legal: [
-    { name: 'Terms of service', href: '#' },
-    { name: 'Privacy policy', href: '#' },
-    { name: 'Cookie Policy', href: '#' },
+    { name: 'Terms of service', href: '/legal-information/#terms' },
+    { name: 'Privacy policy', href: '/legal-information/#privacy' },
   ],
   social: [
     {
@@ -209,7 +209,7 @@ export default function Footer() {
               </div>
             </div>
             
-            <h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white mt-8">Subscribe to our newsletter</h3>
+            {/*<h3 className="text-sm/6 font-semibold text-gray-900 dark:text-white mt-8">Subscribe to our newsletter</h3>
             <p className="mt-2 text-sm/6 text-gray-600 dark:text-gray-400">
               The latest digital trends, design insights, and creative inspiration, sent to your inbox weekly.
             </p>
@@ -234,7 +234,7 @@ export default function Footer() {
                   Subscribe
                 </button>
               </div>
-            </form>
+            </form>*/}
           </div>
         </div>
                  <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24 dark:border-white/10">

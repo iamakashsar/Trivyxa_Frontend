@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivyxa Tech - Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            /* Light gray background */
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-video-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-video-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fade-in-up 0.4s ease-out;
+        }
+
+        #chatbase-bubble {
+            z-index: 999999 !important;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 text-2xl font-bold text-gray-900">
+                    <img src="image/trivyxa_logo.jpeg" alt="Trivyxa Tech"
+                        class="w-8 h-8 rounded-full shadow-sm" />
+                    <a href="#">Trivyxa Tech</a>
+                </div>
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition duration-300">Projects</a>
+                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition duration-300">Skills</a>
+                    <a href="#experience"
+                        class="text-gray-600 hover:text-indigo-600 transition duration-300">Experience</a>
+                    <a href="#services-focus"
+                        class="text-gray-600 hover:text-indigo-600 transition duration-300">Services</a>
+                    <a href="/contact"
+                        class="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition duration-300">Contact</a>
+                </nav>
+                <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-200">About</a>
+            <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-200">Projects</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-gray-200">Skills</a>
+            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-gray-200">Experience</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-200">Contact</a>
+            <a href="#services-focus" class="block py-2 px-4 text-sm hover:bg-gray-200">Services</a>
+        </div>
+    </header>
+</body>
+
+</html>
+
+
+<main class="pt-16">
+    <section id="hero" class="hero-video-bg py-24 md:py-40 text-white">
+        <video autoplay loop muted playsinline poster="/videos/office-loop.jpg">
+            <source src="video/main.mp4" type="video/mp4">
+            <!-- Fallback image for older browsers -->
+        </video>
+
+        <div class="hero-content container mx-auto px-6 text-center">
+            <div class="md:flex md:items-center md:justify-between max-w-6xl mx-auto gap-12">
+
+                <div class="md:w-5/12 text-center md:text-left mb-10 md:mb-0">
+                    <img src="image/trivyxa_logo.jpeg" alt="Trivyxa Tech Logo"
+                        class="w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0 rounded-full shadow-xl border-4 border-white">
+                    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight mt-4">Trivyxa Tech</h1>
+                    <p class="text-indigo-300 font-medium text-lg mt-2">Innovating with Code & Creativity</p>
+                </div>
+
+                <div class="md:w-7/12 text-center md:text-left">
+                    <p class="text-lg text-gray-100 mb-6 leading-relaxed">
+                        We build scalable, modern digital products. From full-stack web apps to user-first UI/UX, we
+                        help
+                        businesses deliver experiences that matter.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                        <a href="#projects"
+                            class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">
+                            Explore Our Work
+                        </a>
+                        <a href="/contact"
+                            class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold border border-indigo-300 hover:bg-indigo-50 transition duration-300 transform hover:scale-105 shadow-lg">
+                            Start a Project
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Services & Focus Areas Section -->
+<section id="services-focus" class="bg-gray-100 py-24">
+    <div class="container mx-auto px-6 max-w-7xl text-center">
+
+        <h2 class="text-3xl md:text-4xl font-bold text-indigo-700 mb-14">Our Services & Focus Areas</h2>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <!-- Service Card -->
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Web Development</h3>
+                <p class="text-gray-600">Responsive, scalable websites and apps tailored to your business goals.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path
+                            d="M9.75 17l6.5-6.5M9.75 7.5h.008v.008H9.75V7.5zm6.5 0h.008v.008h-.008V7.5zM9.75 16.25h.008v.008H9.75v-.008zm6.5 0h.008v.008h-.008v-.008z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">UI/UX Design</h3>
+                <p class="text-gray-600">Clean, intuitive interfaces that prioritize user satisfaction and flow.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path
+                            d="M12 3v2m6.364 1.636l-1.414 1.414M21 12h-2M17.364 17.364l-1.414-1.414M12 21v-2M6.636 17.364l1.414-1.414M3 12h2M6.636 6.636l1.414 1.414" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile App Development</h3>
+                <p class="text-gray-600">Custom Android apps built for speed, usability, and scalability.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M3 3h18v18H3V3z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">E-Commerce Solutions</h3>
+                <p class="text-gray-600">Robust platforms to launch, grow, and optimize online businesses.</p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M4 4h16v16H4z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">API Integration</h3>
+                <p class="text-gray-600">Seamlessly connect your systems with 3rd-party APIs for smoother automation.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition group">
+                <div class="text-indigo-600 mb-4">
+                    <svg class="mx-auto w-10 h-10 group-hover:scale-110 transition" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 4.354a9 9 0 110 15.292A9 9 0 0112 4.354z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Maintenance & Support</h3>
+                <p class="text-gray-600">Regular updates, security patches, and performance monitoring to keep you
+                    running.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</section>
+
+<section id="projects" class="py-20 md:py-24 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-16">My Projects</h2>
+
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+
+            <!-- Project Card -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="Hospital Appointment System">
+                <img src="https://placehold.co/600x400/f39c12/ffffff?text=Hospital+Appointment"
+                    alt="Hospital Appointment System" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Hospital Appointment System</h3>
+                    <p class="text-gray-600 text-sm text-center">A hospital booking platform with role-based access for
+                        patients, doctors, and admins. Built using Java, JSP, and MySQL.</p>
+                </div>
+            </div>
+
+            <!-- E-commerce Platform -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="E-commerce Platform">
+                <img src="https://placehold.co/600x400/3498db/ffffff?text=E-commerce" alt="E-commerce Platform"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">E-commerce Platform</h3>
+                    <p class="text-gray-600 text-sm text-center">Online store with product search, cart system, and
+                        payment gateway using Java stack and JDBC for backend.</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Website -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="Portfolio Website">
+                <img src="https://placehold.co/600x400/2ecc71/ffffff?text=Portfolio" alt="Portfolio Website"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Portfolio Website</h3>
+                    <p class="text-gray-600 text-sm text-center">Responsive personal portfolio built with Tailwind CSS
+                        and deployed via GitHub Pages to showcase projects and skills.</p>
+                </div>
+            </div>
+
+            <!-- Employee Management System -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="Employee Management System">
+                <img src="https://placehold.co/600x400/27ae60/ffffff?text=Employee+Mgmt"
+                    alt="Employee Management System" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Employee Management System</h3>
+                    <p class="text-gray-600 text-sm text-center">Manages employee data, attendance, and leave tracking.
+                        Developed using Java Servlets and MySQL database.</p>
+                </div>
+            </div>
+
+            <!-- Database Backup Utility -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="Database Backup Utility">
+                <img src="https://placehold.co/600x400/16a085/ffffff?text=DB+Backup" alt="Database Backup Utility"
+                    class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Database Backup Utility</h3>
+                    <p class="text-gray-600 text-sm text-center">Automates MySQL database backups with both scheduled
+                        and manual options. Built with Java and file system APIs.</p>
+                </div>
+            </div>
+
+            <!-- Face Recognition System -->
+            <div class="bg-white shadow-lg rounded-xl overflow-hidden transition hover:shadow-2xl hover:-translate-y-1 duration-300 cursor-pointer"
+                data-project="Face Recognition System">
+                <img src="https://placehold.co/600x400/9b59b6/ffffff?text=Face+Recognition"
+                    alt="Face Recognition System" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Face Recognition System</h3>
+                    <p class="text-gray-600 text-sm text-center">Real-time face recognition system for attendance and
+                        security, developed using Python and OpenCV libraries.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div id="projectModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow-xl w-11/12 max-w-xl p-6 relative animate-fade-in-up">
+        <button onclick="closeModal()"
+            class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        <h3 id="modalTitle" class="text-2xl font-bold text-center mb-4"></h3>
+        <ul id="modalContent" class="list-disc list-inside space-y-2 text-gray-700 text-sm md:text-base"></ul>
+        <div id="modalAnimation" class="mt-6 text-center"></div>
+    </div>
+</div>
+
+
+
+
+<!-- Skills Section -->
+<section id="skills" class="bg-white py-20 md:py-24">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Skills & Expertise</h2>
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Java')">Java</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3"></path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Python')">Python
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Hibernate')">
+                        Hibernate </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7l8-4 8 4M12 15v4">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Database & SQL')">
+                        Database & SQL</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('HTML5 & CSS3')">
+                        HTML5 & CSS3</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.294 1.294.99 3.51.12 4.38a2 2 0 01-2.434.246l-8.12-4.06a2 2 0 00-1.172 0l-8.12 4.06a2 2 0 01-2.434-.246c-.87-.87-1.174-3.086.12-4.38l5-5A2 2 0 008 10.172V5L7 4h1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600"
+                        onclick="showSkill('React & Next.js')">React & Next.js</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600"
+                        onclick="showSkill('Spring & SpringBoot')">Spring & SpringBoot</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('RESTful APIs')">
+                        RESTful APIs</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 012 2v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4a2 2 0 012-2h10z" />
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Django')">Django
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 10h16M4 14h10m-6 4h6" />
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Pandas')">Pandas
+                    </p>
+                </div>
+
+
+
+
+                <!-- Matplotlib -->
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 3.055A9.001 9.001 0 1021 12h-8z" />
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Matplotlib')">
+                        Matplotlib</p>
+                </div>
+
+                <!-- Flask -->
+                <div class="flex flex-col items-center">
+                    <div class="bg-indigo-100 p-4 rounded-full mb-2">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v16h16V4H4zm4 4h8v8H8V8z" />
+                        </svg>
+                    </div>
+                    <p class="font-semibold cursor-pointer hover:text-indigo-600" onclick="showSkill('Flask')">Flask</p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <!-- Skill Info Modal -->
+    <div id="skillModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg max-w-lg w-full p-6 relative">
+            <button onclick="closeModal()"
+                class="absolute top-2 right-2 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
+            <h3 id="skillTitle" class="text-2xl font-semibold mb-4"></h3>
+            <ul id="skillDescription" class="list-disc pl-5 text-gray-700 space-y-2 text-sm"></ul>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="py-20 md:py-24">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">Work Experience</h2>
+        <div class="relative max-w-2xl mx-auto">
+            <!-- Vertical line: Left-aligned on small screens (default), centered on medium screens and up -->
+            <div class="border-l-2 border-indigo-200 absolute h-full top-0 left-4 md:left-1/2 md:-translate-x-1/2">
+            </div>
+
+            <!-- Experience Item 1 -->
+            <div class="mb-8 flex items-center w-full md:justify-between">
+                <!-- Spacer div: Hidden on small screens (w-0), takes 5/12 width on medium and up for alternating layout -->
+                <div class="order-1 w-0 md:w-5/12"></div>
+                <!-- Timeline Dot -->
+                <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full flex-shrink-0">
+                    <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                </div>
+                <!-- Content box: Full width with left margin on small screens, 5/12 width on medium and up -->
+                <div class="order-1 bg-white rounded-lg shadow-xl w-full ml-8 md:w-5/12 md:ml-0 md:mr-0 p-6">
+                    <p class="text-sm text-gray-500">2021 - Present</p>
+                    <h3 class="font-bold text-gray-800 text-lg">Senior Developer, Tech Solutions Inc.</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600 text-opacity-100">Led a team to
+                        develop a new SaaS platform, improving client engagement by 30%.</p>
+                </div>
+            </div>
+
+            <!-- Experience Item 2 -->
+            <div class="mb-8 flex items-center w-full md:flex-row-reverse md:justify-between">
+                <!-- Spacer div: Hidden on small screens (w-0), takes 5/12 width on medium and up for alternating layout -->
+                <div class="order-1 w-0 md:w-5/12"></div>
+                <!-- Timeline Dot -->
+                <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full flex-shrink-0">
+                    <h1 class="mx-auto text-white font-semibold text-lg">2</h1>
+                </div>
+                <!-- Content box: Full width with left margin on small screens, 5/12 width on medium and up -->
+                <div class="order-1 bg-white rounded-lg shadow-xl w-full ml-8 md:w-5/12 md:ml-0 md:mr-0 p-6">
+                    <p class="text-sm text-gray-500">2019 - 2021</p>
+                    <h3 class="font-bold text-gray-800 text-lg">Mid-Level Developer, Web Innovators</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600 text-opacity-100">Developed and
+                        maintained client websites, focusing on responsive design and performance.</p>
+                </div>
+            </div>
+
+            <!-- Experience Item 3 -->
+            <div class="mb-8 flex items-center w-full md:justify-between">
+                <!-- Spacer div: Hidden on small screens (w-0), takes 5/12 width on medium and up for alternating layout -->
+                <div class="order-1 w-0 md:w-5/12"></div>
+                <!-- Timeline Dot -->
+                <div class="z-20 flex items-center order-1 bg-indigo-600 shadow-xl w-8 h-8 rounded-full flex-shrink-0">
+                    <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
+                </div>
+                <!-- Content box: Full width with left margin on small screens, 5/12 width on medium and up -->
+                <div class="order-1 bg-white rounded-lg shadow-xl w-full ml-8 md:w-5/12 md:ml-0 md:mr-0 p-6">
+                    <p class="text-sm text-gray-500">2018 - 2019</p>
+                    <h3 class="font-bold text-gray-800 text-lg">Junior Developer, Digital Crafters</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600 text-opacity-100">Assisted in
+                        building web applications and learned foundational development principles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- About Me Section -->
+
+<section id="about" class="bg-white">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">Our Team</h2>
+
+        <!-- Swiper Container -->
+        <div class="swiper teamSwiper">
+            <div class="swiper-wrapper">
+
+                <!-- Member 1 -->
+                <div class="swiper-slide flex flex-col items-center text-center px-6">
+                    <img src="image/rohan.jpeg" alt="Rohan Shinde" class="rounded-full shadow-lg w-48 h-48 mb-4">
+
+                    <h3 class="text-xl font-semibold text-gray-800">Rohan Shinde</h3>
+                    <p class="text-gray-600 mb-2">Java Full Stack Developer/UI/UX Developer</p>
+                    <p class="text-gray-500 max-w-lg">Specializes in the Java stack and building seamless user
+                        experiences and Skilled in designing intuitive user interfaces as a UI/UX Developer.</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="swiper-slide flex flex-col items-center text-center px-6">
+                    <img src="image/akash.jpeg" alt="Akash Sar" class="rounded-full shadow-lg w-48 h-48 mb-4">
+
+                    <h3 class="text-xl font-semibold text-gray-800">Akash Sar</h3>
+                    <p class="text-gray-600 mb-2">Java Backend Developer</p>
+                    <p class="text-gray-500 max-w-lg">A backend developer is responsible for building and maintaining
+                        the core logic, APIs, and database interactions that power the functionality of web or mobile
+                        applications..</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="swiper-slide flex flex-col items-center text-center px-6">
+                    <img src="image/arko.jpeg" alt="Akash Sar" class="rounded-full shadow-lg w-48 h-48 mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Arko kayal</h3>
+                    <p class="text-gray-600 mb-2">Python full stack developer</p>
+                    <p class="text-gray-500 max-w-lg">Proficient in developing end-to-end web applications using Python
+                        frameworks like Django or Flask, with strong frontend and database integration skills.</p>
+                </div>
+
+            </div>
+
+            <!-- Swiper Navigation -->
+            <div class="swiper-pagination mt-6"></div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-100 py-20 md:py-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Let’s Connect</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    I'm open to freelance work, collaborations, or full-time roles. Drop a message, and I’ll get back to
+                    you soon.
+                </p>
+
+                <!-- Email Button -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=trinexustech03@gmail.com" target="_blank"
+                    class="inline-block bg-indigo-600 text-white text-lg px-8 py-4 rounded-full font-semibold hover:bg-indigo-700 transition duration-300 transform hover:scale-105">
+                   trivyxatech@gmail.com
+                </a>
+
+                <!-- Social Links -->
+                <div class="mt-8 flex justify-center space-x-6 text-2xl">
+                    <a href="https://www.linkedin.com/in/trinexus-tech-19a98a372/" target="_blank" aria-label="LinkedIn"
+                        class="text-gray-500 hover:text-indigo-600 transition-transform transform hover:scale-110">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/TrinexusTech" target="_blank" aria-label="GitHub"
+                        class="text-gray-500 hover:text-indigo-600 transition-transform transform hover:scale-110">
+                        <i class="fab fa-github"></i>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/Trivyxa-Tech" target="_blank"
+                    class="hover:text-indigo-400 transition duration-300">GitHub</a>
+
+                <a href="https://www.linkedin.com/company/trivyxa-tech/posts/?feedView=all" target="_blank"
+                    class="hover:text-indigo-400 transition duration-300">LinkedIn</a>
+            </div>
+            <p class="text-sm text-gray-400">&copy; 2025 Trivyxa Tech. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.getElementById("mobile-menu-button");
+            const menu = document.getElementById("mobile-menu");
+
+            btn.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+            });
+        });
+
+    </script>
+    <script>
+        const skillData = {
+            "Java": [
+                "Core OOP-based programming language used for robust backend development.",
+                "Supports multi-threading, exception handling, and memory management.",
+                "Used in web apps, Android apps, enterprise systems, and more.",
+                "Popular frameworks: Spring, Hibernate, JSP/Servlets.",
+                "Write once, run anywhere — platform-independent via JVM."
+            ],
+            "Python": [
+                "Python’s clean and intuitive syntax makes it easy to write and understand code, even for beginners.",
+                "Python offers powerful libraries like NumPy, Pandas, TensorFlow, Django, and Flask for tasks ranging from data science to web development.",
+                "Python is platform-independent—you can run the same code on Windows, macOS, or Linux with little or no changes..",
+                "Python is widely used in web development, data analysis, machine learning, automation, scripting, and more..",
+                "With a massive global community, Python provides abundant resources, tutorials, forums, and open-source tools to support learners and professionals."
+            ],
+            "Hibernate": [
+                "An ORM tool that maps Java objects to database tables.",
+                "Reduces boilerplate code using annotations and config files.",
+                "Handles lazy loading, caching, and query optimization.",
+                "Works well with relational DBs like MySQL or PostgreSQL.",
+                "Integrated with Spring for enterprise-grade backend systems."
+            ],
+            "Database & SQL": [
+                "SQL is essential for working with relational databases.",
+                "Mastering queries, joins, and indexes boosts performance.",
+                "Databases like MySQL, PostgreSQL, and Oracle are commonly used.",
+                "CRUD operations and transaction management are key concepts.",
+                "Understanding schema design and normalization is vital."
+            ],
+            "HTML5 & CSS3": [
+                "HTML5 provides structure using semantic tags.",
+                "CSS3 adds styling, animations, and responsive layouts.",
+                "Flexbox and Grid help in building flexible UI designs.",
+                "Forms, media elements, and accessibility improved in HTML5.",
+                "Crucial for crafting modern, responsive web frontends."
+            ],
+            "React & Next.js": [
+                "React builds dynamic, component-based UIs efficiently.",
+                "Next.js adds SSR (server-side rendering) and file-based routing.",
+                "Great for SEO, performance, and scalability in modern apps.",
+                "Supports features like API routes and static site generation.",
+                "Used widely for frontend development in full-stack applications."
+            ],
+            "Spring & SpringBoot": [
+                "Spring provides dependency injection and modular components.",
+                "Spring Boot simplifies configuration and app setup.",
+                "Ideal for building REST APIs and enterprise-grade apps.",
+                "Built-in tools like Spring Data, Security, and Actuator.",
+                "Helps create scalable, testable Java applications quickly."
+            ],
+            "RESTful APIs": [
+                "APIs follow stateless client-server architecture using HTTP.",
+                "Common methods include GET, POST, PUT, DELETE.",
+                "Used for frontend-backend communication and integrations.",
+                "Returns JSON/XML for web or mobile apps.",
+                "Essential for modern microservices and distributed systems."
+            ]
+        };
+
+        function showSkill(skillName) {
+            const modal = document.getElementById("skillModal");
+            const title = document.getElementById("skillTitle");
+            const list = document.getElementById("skillDescription");
+
+            title.textContent = skillName;
+            list.innerHTML = "";
+            skillData[skillName].forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+
+            modal.classList.remove("hidden");
+        }
+
+        function closeModal() {
+            document.getElementById("skillModal").classList.add("hidden");
+        }
+    </script>
+
+    <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".teamSwiper", {
+            loop: true,
+            grabCursor: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 1,
+            breakpoints: {
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+    <script>
+        const modal = document.getElementById("projectModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalContent = document.getElementById("modalContent");
+        const modalAnimation = document.getElementById("modalAnimation");
+
+        const projectDetails = {
+            "Hospital Appointment System": {
+                title: "Hospital Appointment System",
+                points: [
+                    "Multi-role login for Admin, Doctor, and Patient.",
+                    "Patients can book and cancel appointments online.",
+                    "Doctors can manage schedules and prescriptions.",
+                    "Built using Java, JSP/Servlets, and MySQL.",
+                    "Basic email alerts for confirmation/reminders."
+                ],
+                video: "video/hospital.mp4"
+            },
+            "E-commerce Platform": {
+                title: "E-commerce Platform",
+                points: [
+                    "User authentication and product catalog.",
+                    "Add to cart, checkout, and payment gateway.",
+                    "Admin dashboard for product management.",
+                    "Built using Java (JSP/Servlets), JDBC, and MySQL.",
+                    "Responsive design and order history."
+                ],
+                video: "video/ecommerce.mp4"
+            },
+            "Portfolio Website": {
+                title: "Portfolio Website",
+                points: [
+                    "Responsive design using Tailwind CSS.",
+                    "Sections for projects, skills, and contact.",
+                    "Deployed via GitHub Pages.",
+                    "Fully mobile-friendly layout.",
+                    "Clean animations and hover effects."
+                ],
+                video: "video/portfolio.mp4"
+            },
+            "Employee Management System": {
+                title: "Employee Management System",
+                points: [
+                    "Add/edit/delete employee records.",
+                    "Tracks attendance and leave history.",
+                    "Built using Java Servlets and MySQL.",
+                    "Includes reporting tools for HR.",
+                    "Login system with role-based access."
+                ],
+                video: "video/emservice.mp4"
+            },
+            "Database Backup Utility": {
+                title: "Database Backup Utility",
+                points: [
+                    "Java-based automated backup tool for MySQL.",
+                    "Supports scheduled cron jobs and manual backup.",
+                    "Generates `.sql` files with timestamp.",
+                    "Optional ZIP compression and email send.",
+                    "Simple UI for triggering backup."
+                ],
+                video: "video/db.mp4"
+            },
+            "Face Recognition System": {
+                title: "Face Recognition System",
+                points: [
+                    "Real-time face detection using OpenCV.",
+                    "Used for attendance or access control.",
+                    "Built using Python with Haar Cascade & LBPH.",
+                    "Image training and recognition pipeline.",
+                    "GUI interface for camera and result logs."
+                ],
+                video: "video/face recog.mp4"
+            }
+        };
+
+        function openModal(projectName) {
+            const data = projectDetails[projectName];
+            modalTitle.textContent = data.title;
+            modalContent.innerHTML = data.points.map(point => `<li>${point}</li>`).join("");
+
+            // Check if the project has a video
+            if (data.video) {
+                modalAnimation.innerHTML = `
+      <video 
+        src="${data.video}" 
+        autoplay 
+        muted 
+        playsinline 
+        controls 
+        class="mx-auto rounded shadow max-h-72 w-full">
+        Your browser does not support the video tag.
+      </video>
+    `;
+            } else {
+                modalAnimation.innerHTML = `<img src="${data.animationImg}" alt="${data.title}" class="mx-auto rounded shadow">`;
+            }
+
+            modal.classList.remove("hidden");
+            document.body.classList.add("overflow-hidden");
+        }
+
+        function closeModal() {
+            modal.classList.add("hidden");
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        document.querySelectorAll('[data-project]').forEach(card => {
+            card.addEventListener("click", () => {
+                openModal(card.getAttribute("data-project"));
+            });
+        });
+    </script>
+    <!-- Chatbase Chatbot -->
+    <script>
+        window.chatbaseConfig = {
+            chatbotId: "F1o39SyzPp3pDm5XbE5PJ", // use your actual ID
+        }
+    </script>
+    <script src="https://www.chatbase.co/embed.min.js" defer></script>
+
+
+    </body>
+
+    </html>

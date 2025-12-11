@@ -3,7 +3,8 @@
 export default function HelpSupport() {
   return (
     <div className="relative bg-white dark:bg-gray-900">
-      <div className="relative h-80 overflow-hidden bg-indigo-600 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
+      {/* IMAGE ON RIGHT */}
+      <div className="relative h-80 overflow-hidden bg-indigo-600 md:absolute md:right-0 md:h-full md:w-1/3 lg:w-1/2">
         <img
           alt=""
           src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=6366F1&sat=-100&blend-mode=multiply"
@@ -34,10 +35,14 @@ export default function HelpSupport() {
           </defs>
         </svg>
       </div>
+
+      {/* CONTENT ON LEFT */}
       <div className="relative mx-auto max-w-7xl py-24 sm:py-32 lg:px-8 lg:py-40">
-        <div className="pr-6 pl-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pr-0 lg:pl-24 xl:pl-32">
-          <h2 className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">Professional Support</h2>
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+        <div className="pl-6 pr-6 md:pr-16 md:w-2/3 lg:w-1/2 lg:pl-0 xl:pr-32">
+          <h2 className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
+            Professional Support
+          </h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
             We're here to help
           </p>
           <p className="mt-6 text-base/7 text-gray-600 dark:text-gray-300">
@@ -45,10 +50,11 @@ export default function HelpSupport() {
             From project planning to final delivery, we're committed to your success with comprehensive 
             guidance, regular updates, and personalized assistance throughout your project.
           </p>
+
           <div className="mt-8">
             <a
               href="#"
-              className="inline-flex rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:shadow-none"
+              className="inline-flex rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Contact Support
             </a>

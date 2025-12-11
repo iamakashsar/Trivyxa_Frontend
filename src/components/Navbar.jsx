@@ -1,159 +1,141 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/24/outline";
 
-
+// ----------------- NAVIGATION DATA -----------------
 
 const navigation = [
-  { 
-    name: 'Home', 
-    href: '/', 
-    current: true 
-  },
-  { 
-    name: 'About', 
-    href: '/about', 
-    current: false 
-  },
-  { 
-    name: 'Services', 
-    href: '/#features', 
+  { name: "Home", href: "/", current: true },
+  { name: "About", href: "/about", current: false },
+
+  {
+    name: "Services",
+    href: "/#features",
     current: false,
     submenu: [
-      { name: 'Features', href: '/#features' },
-      { name: 'Statistics', href: '/#stats' },
-      { name: 'Testimonials', href: '/#testimonials' },
-      { name: 'Help & Support', href: '/#help-support' }
-    ]
+      { name: "Features", href: "/#features" },
+      { name: "Statistics", href: "/#stats" },
+      { name: "Help & Support", href: "/#help-support" },
+    ],
   },
-  { 
-    name: 'Solutions', 
-    href: '/', 
+
+  {
+    name: "Solutions",
+    href: "/",
     current: false,
     submenu: [
-      { name: 'FAQ', href: '/#faq' },
-      { name: 'Enterprise', href: '/#pricing' },
-      { name: 'Startup Plans', href: '/#features' }
-    ]
+      { name: "FAQ", href: "/#faq" },
+      { name: "Startup Plans", href: "/#features" },
+    ],
   },
-  { 
-    name: 'Company', 
-    href: '/about', 
+
+  {
+    name: "Company",
+    href: "/about",
     current: false,
     submenu: [
-      { name: 'About Us', href: '/about/#content' },
-      { name: 'Our Team', href: '' },
-      { name: 'Company Values', href: '/about/#values' },
-      { name: 'Contact Info', href: '/about/' } // Note: This submenu item still points to /about for 'Contact Info'
-    ]
+      { name: "About Us", href: "/about/#content" },
+      { name: "Our Team", href: '/about/#team' },
+      { name: "Company Values", href: "/about/#values" },
+      { name: "Contact Info", href: "/contact" },
+    ],
   },
-  // Added a dedicated top-level Contact link
-  { 
-    name: 'Contact', 
-    href: '/contact', 
-    current: false 
-  },
-  { 
-    name: 'social media', 
-    href: '/SocialMedia', 
-    current: false 
-  }
-]
+
+  { name: "Contact", href: "/contact", current: false },
+  { name: "Social Media", href: "/SocialMedia", current: false },
+];
+
+// ---------------------------------------------------
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState(null)
-  const location = useLocation()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const location = useLocation();
 
-  // Handle scroll effect
+  // Scroll Effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setMobileMenuOpen(false)
-    setActiveDropdown(null)
-  }, [location])
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location]);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent body scroll on mobile menu open
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [mobileMenuOpen])
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "unset";
+  }, [mobileMenuOpen]);
 
-
-
-  const handleDropdownToggle = (index) => {
-    setActiveDropdown(activeDropdown === index ? null : index)
-  }
-
+  // FIXED ACTIVE ROUTE LOGIC
   const isActiveRoute = (href) => {
-    // If the path is a root-relative link like /contact
-    if (!href.startsWith('/#')) {
-        // Simple path comparison
-        return location.pathname === href
-    }
-    // Handle hash links (only active on the home page)
-    if (href === '/') {
-      return location.pathname === '/'
-    }
-    // Handle hash links on the current page
-    return location.pathname === '/' && location.hash === href.substring(1)
-  }
+    const { pathname, hash } = location;
+
+    // No hash → simple match
+    if (!href.includes("#")) return pathname === href;
+
+    // Has hash → split path and section
+    const [base, section] = href.split("#");
+    return pathname === base && hash === `#${section}`;
+  };
 
   const scrollToSection = (href) => {
-    if (href.startsWith('/#')) {
-      const element = document.querySelector(href.substring(1))
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
+    if (href.startsWith("/#")) {
+      const section = href.replace("/#", "#");
+      const el = document.querySelector(section);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
+
+  const toggleDropdown = (index) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
+  };
 
   return (
     <>
-      {/* Top accent bar */}
+      {/* Top Color Bar */}
       <div className="h-1 bg-gradient-to-r from-slate-600 via-blue-600 to-indigo-600"></div>
-      
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-        isScrolled 
-          ? 'bg-white shadow-lg border-b border-gray-200 dark:bg-slate-900 dark:border-slate-700' 
-          : 'bg-white/95 backdrop-blur-sm dark:bg-slate-900/95'
-      }`}>
+
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white dark:bg-slate-900 shadow-lg border-b border-gray-200 dark:border-slate-700"
+            : "bg-white/95 dark:bg-slate-900/95 backdrop-blur-md"
+        }`}
+      >
         <nav className="mx-auto max-w-7xl">
-          {/* Main navigation container */}
           <div className="flex h-16 items-center justify-between px-6 lg:px-8">
-            
-            {/* Logo Section */}
+            {/* ---------------- LOGO BLOCK ---------------- */}
             <div className="flex items-center">
               <Link to="/" className="group flex items-center">
                 <div className="relative">
-                  <img 
-                    src="/assets/logo/logo.png" 
-                    alt="Trivyxa Logo" 
+                  <img
+                    src="/assets/logo/logo.png"
+                    alt="Trivyxa Logo"
                     className="h-14 w-auto mix-blend"
                     // Fallback using placeholder if image fails to load (essential practice)
-                    onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/56x56/4f46e5/ffffff?text=LOGO" }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src =
+                        "https://placehold.co/56x56/4f46e5/ffffff?text=LOGO";
+                    }}
                   />
                 </div>
               </Link>
             </div>
+            {/* ------------------------------------------------ */}
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex lg:items-center lg:space-x-1">
@@ -161,46 +143,42 @@ export default function Navbar() {
                 <div key={item.name} className="relative group">
                   {item.submenu ? (
                     <button
-                      onClick={() => handleDropdownToggle(index)}
-                      className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                      onClick={() => toggleDropdown(index)}
+                      className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-md transition ${
                         isActiveRoute(item.href) || activeDropdown === index
-                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400'
-                          : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                          ? "text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400"
+                          : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                       }`}
                     >
                       <span>{item.name}</span>
-                      <ChevronDownIcon className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+                      <ChevronDownIcon className="h-4 w-4" />
                     </button>
                   ) : (
                     <Link
                       to={item.href}
                       onClick={() => scrollToSection(item.href)}
-                      className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                      className={`px-4 py-2 text-sm font-medium rounded-md transition ${
                         isActiveRoute(item.href)
-                          ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400'
-                          : 'text-slate-700 dark:text-slate-200 hover:text-blue-600 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                          ? "text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400"
+                          : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                       }`}
                     >
-                      <span>{item.name}</span>
+                      {item.name}
                     </Link>
                   )}
-                  
-                  {/* Dropdown Menu */}
+
+                  {/* Dropdown */}
                   {item.submenu && (
-                    <div className={`absolute top-full left-0 mt-1 w-56 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-gray-200 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}>
+                    <div className="absolute top-full left-0 mt-1 hidden group-hover:block w-56 bg-white dark:bg-slate-800 shadow-xl border border-gray-200 dark:border-slate-700 rounded-lg z-50">
                       <div className="py-2">
-                        {item.submenu.map((subItem) => (
+                        {item.submenu.map((sub) => (
                           <Link
-                            key={subItem.name}
-                            to={subItem.href}
-                            onClick={() => {
-                              if (subItem.href.startsWith('/#')) {
-                                scrollToSection(subItem.href)
-                              }
-                            }}
-                            className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-150"
+                            key={sub.name}
+                            to={sub.href}
+                            onClick={() => scrollToSection(sub.href)}
+                            className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/20"
                           >
-                            {subItem.name}
+                            {sub.name}
                           </Link>
                         ))}
                       </div>
@@ -210,154 +188,101 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right side actions */}
-            <div className="flex items-center space-x-4">
-              
-              {/* Desktop CTA buttons */}
-              <div className="hidden lg:flex lg:items-center lg:space-x-3">
-                {/*<Link
-                  to="/contact" // FIX: Link updated to /contact
-                  className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                >
-                  Contact
-                </Link>*/}
-                <Link
-                  to="/contact"
-                  onClick={() => scrollToSection('/#pricing')}
-                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors duration-200 shadow-sm hover:shadow-md btn-professional"
-                >
-                  Get Started
-                </Link>
-              </div>
-
-              {/* Mobile menu button */}
-              <div className="lg:hidden">
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(true)}
-                  className="inline-flex items-center justify-center p-2 rounded-md text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200"
-                  aria-label="Open main menu"
-                >
-                  <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-                </button>
-              </div>
+            {/* Right Side CTA */}
+            <div className="hidden lg:flex space-x-3">
+              <Link
+                to="/contact"
+                className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700 shadow-sm"
+              >
+                Get Started
+              </Link>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="lg:hidden p-2 rounded-md text-slate-700 dark:text-slate-200"
+            >
+              <Bars3Icon className="h-6 w-6" />
+            </button>
           </div>
         </nav>
       </header>
-      
-      {/* Mobile menu */}
+
+      {/* ---------------- MOBILE MENU ---------------- */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
-          <div 
+          <div
             className="fixed inset-0 bg-black/50"
-            onClick={() => setMobileMenuOpen(false)} 
+            onClick={() => setMobileMenuOpen(false)}
           />
-          
-          {/* Menu panel */}
-          <div className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white dark:bg-slate-900 shadow-2xl">
-            {/* Mobile menu header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-slate-700">
-              <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
-                <img 
-                  src="/assets/logo/logo.png" 
-                  alt="Trivyxa Logo" 
-                  className="h-12 w-auto"
-                  // Fallback using placeholder if image fails to load
-                  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/48x48/4f46e5/ffffff?text=LOGO" }}
-                />
-              </Link>
+
+          <div className="fixed right-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-xl">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between p-6 border-b dark:border-slate-700">
+              <img
+                src="/assets/logo/logo.png"
+                alt="Trivyxa Logo"
+                className="h-12"
+              />
               <button
-                type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-md p-2 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200"
-                aria-label="Close menu"
+                className="p-2 rounded-md"
               >
-                <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+                <XMarkIcon className="h-6 w-6 text-slate-700 dark:text-slate-200" />
               </button>
             </div>
-            
-            {/* Mobile navigation */}
-            <div className="p-6">
-              <div className="space-y-1">
-                {navigation.map((item, index) => (
-                  <div key={item.name}>
-                    {item.submenu ? (
-                      <div>
-                        <button
-                          onClick={() => handleDropdownToggle(index)}
-                          className={`w-full flex items-center justify-between px-4 py-3 text-left text-base font-medium rounded-lg transition-colors duration-200 ${
-                            isActiveRoute(item.href) || activeDropdown === index
-                              ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400'
-                              : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                          }`}
-                        >
-                          <span>{item.name}</span>
-                          <ChevronDownIcon className={`h-4 w-4 transition-transform duration-200 ${
-                            activeDropdown === index ? 'rotate-180' : ''
-                          }`} />
-                        </button>
-                        
-                        {/* Mobile submenu */}
-                        {activeDropdown === index && (
-                          <div className="mt-2 ml-4 space-y-1">
-                            {item.submenu.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.href}
-                                onClick={() => {
-                                  setMobileMenuOpen(false)
-                                  if (subItem.href.startsWith('/#')) {
-                                    setTimeout(() => scrollToSection(subItem.href), 100)
-                                  }
-                                }}
-                                className="block px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md transition-colors duration-200"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        to={item.href}
-                        onClick={() => {
-                          setMobileMenuOpen(false)
-                          if (item.href.startsWith('/#')) {
-                            setTimeout(() => scrollToSection(item.href), 100)
-                          }
-                        }}
-                        className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200 ${
-                          isActiveRoute(item.href)
-                            ? 'text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:text-blue-400'
-                            : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50'
-                        }`}
+
+            {/* Mobile Menu Items */}
+            <div className="p-6 space-y-2">
+              {navigation.map((item, index) => (
+                <div key={item.name}>
+                  {!item.submenu ? (
+                    <Link
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={() => toggleDropdown(index)}
+                        className="w-full flex justify-between px-4 py-3 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
                       >
                         {item.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
-              
+                        <ChevronDownIcon
+                          className={`h-4 w-4 transition ${
+                            activeDropdown === index ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {activeDropdown === index && (
+                        <div className="ml-4 mt-2 space-y-1">
+                          {item.submenu.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              to={subItem.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block px-4 py-2 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md"
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+
               {/* Mobile CTA */}
-              <div className="mt-8 pt-6 border-t border-gray-200 dark:border-slate-700 space-y-3">
+              <div className="pt-6 border-t dark:border-slate-700">
                 <Link
-                  to="/contact" // FIX: Link updated to /contact
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex w-full items-center justify-center px-6 py-3 text-base font-medium text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200"
-                >
-                  Contact Us
-                </Link>
-                <Link
-                  to="/#pricing"
-                  onClick={() => {
-                    setMobileMenuOpen(false)
-                    setTimeout(() => scrollToSection('/#pricing'), 100)
-                  }}
-                  className="flex w-full items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-sm btn-professional"
+                  to="/contact"
+                  className="block w-full px-6 py-3 text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700"
                 >
                   Get Started
                 </Link>
@@ -367,5 +292,5 @@ export default function Navbar() {
         </div>
       )}
     </>
-  )
+  );
 }

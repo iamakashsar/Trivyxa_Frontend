@@ -2,13 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CookieConsent from './components/CookieConsent';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/contact';
 import NotFound from './pages/NotFound';
 import Social from './pages/SocialMedia';
+import LegalInformation from './pages/LegalInformation';
+
+
 
 function App() {
 
@@ -24,10 +26,10 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/SocialMedia" element={<Social />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/legal-information" element={<LegalInformation />} />
           </Routes>
         </main>
         <Footer />
-        <CookieConsent />
       </div>
     </Router>
   );
