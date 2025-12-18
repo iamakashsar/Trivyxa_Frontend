@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 import { useState, useEffect } from 'react'
 
 // Inline SVG for CheckIcon (used for success message)
@@ -97,22 +99,20 @@ export default function App() {
     }
 
     try {
-      // Call backend API (Vite proxy → http://localhost:8080/api/contact)
-      const response = await fetch('api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // This must match ContactRequest DTO in backend
-          name: `${formData.firstName} ${formData.lastName}`.trim(),
-          email: formData.email,
-          phone: formData.phone,
-          service: formData.services,
-          budget: formData.budget,
-          message: formData.projectDetails,
-        }),
-      })
+  const response = await fetch(`${BASE_URL}/api/contact`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: `${formData.firstName} ${formData.lastName}`.trim(),
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.services,
+      budget: formData.budget,
+      message: formData.projectDetails,
+    }),
+  });
 
       if (response.ok) {
         console.log('Contact form sent successfully')
